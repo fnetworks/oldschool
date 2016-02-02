@@ -7,7 +7,7 @@ public class Logics {
 	private static long lastFrame;
 	private static int lastDelta;
 
-	private static long getTime() {
+	public static long getTime() {
 		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
 

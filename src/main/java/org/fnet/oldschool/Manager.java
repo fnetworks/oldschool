@@ -33,6 +33,7 @@ import java.util.List;
 
 import org.fnet.oldschool.entities.Block;
 import org.fnet.oldschool.entities.Player;
+import org.fnet.oldschool.logging.LogSystem;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
@@ -51,10 +52,10 @@ public class Manager {
 
 	private static int lastCheckedFrameCount_HitLeft = -1;
 	private static boolean lastCheckedValue_HitLeft = false;
-	
+
 	private static int lastCheckedFrameCount_HitRight = -1;
 	private static boolean lastCheckedValue_HitRight = false;
-	
+
 	private static final HashMap<String, Texture> textures = new HashMap<>();
 	private static final HashMap<String, Audio> sounds = new HashMap<>();
 	private static final ArrayList<Block> blocklist = new ArrayList<>();
@@ -65,11 +66,11 @@ public class Manager {
 		return (x < Mouse.getX() && Mouse.getX() < x + width)
 				&& (y < DISPLAY_HEIGHT - Mouse.getY() && DISPLAY_HEIGHT - Mouse.getY() < y + height);
 	}
-	
+
 	public static void setColor(float r, float g, float b) {
 		glClearColor(r, g, b, 1.0f);
 	}
-	
+
 	public static void setColorToDefault() {
 		glClearColor(63.0f / 255.0f, 165.0f / 255.0f, 255.0f / 255.0f, 1.0f);
 	}
@@ -109,30 +110,36 @@ public class Manager {
 
 	public static Texture getPng(String name) throws IOException {
 		if (!textures.containsKey(name)) {
+			long before = System.currentTimeMillis();
 			textures.put(name, TextureLoader.getTexture("PNG",
 					ResourceLoader.getResourceAsStream("res/textures/" + name + ".png")));
+			long after = System.currentTimeMillis();
+			LogSystem.getLogger(Manager.class).info("Loaded Texture '" + name + "' in " + (after - before) + " ms.");
 		}
 		return textures.get(name);
 	}
 
 	public static Audio getOgg(String name) throws IOException {
 		if (!sounds.containsKey(name)) {
+			long before = System.currentTimeMillis();
 			sounds.put(name,
 					AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/sounds/" + name + ".ogg")));
+			long after = System.currentTimeMillis();
+			LogSystem.getLogger(Manager.class).info("Loaded Sound '" + name + "' in " + (after - before) + " ms.");
 		}
 		return sounds.get(name);
 	}
 
 	public static void clean() {
-		System.out.print("Cleaning Textures ... ");
+		LogSystem.getLogger(Manager.class).info("Cleaning Textures ... ");
 		int tc = 0;
 		for (Texture t : textures.values()) {
 			tc++;
 			t.release();
 		}
-		System.out.print(tc + " OK, finalizing ... ");
+		LogSystem.getLogger(Manager.class).info(tc + " textures OK, finalizing ... ");
 		textures.clear();
-		System.out.println("OK");
+		LogSystem.getLogger(Manager.class).info("Finalization Complete.");
 
 		for (Audio a : sounds.values()) {
 			a.stop();
@@ -157,9 +164,9 @@ public class Manager {
 		if (lastCheckedFrameCount_HitBottom == frameCount) {
 			return lastCheckedValue_HitBottom;
 		}
-		
+
 		lastCheckedFrameCount_HitBottom = frameCount;
-		
+
 		for (Block b : blocklist) {
 			float playerXMidPoint = p.getX() + p.getTexture().getTextureWidth() / 2;
 			if (!(playerXMidPoint > b.getX() && playerXMidPoint < b.getX() + b.getTexture().getTextureWidth() / 2
@@ -181,9 +188,9 @@ public class Manager {
 		if (lastCheckedFrameCount_HitRight == frameCount) {
 			return lastCheckedValue_HitRight;
 		}
-		
+
 		lastCheckedFrameCount_HitRight = frameCount;
-		
+
 		for (Block b : blocklist) {
 			float playerHighY = p.getY();
 			float playerDeepY = p.getY() + p.getTexture().getTextureHeight() - 1.6f;
@@ -207,9 +214,9 @@ public class Manager {
 		if (lastCheckedFrameCount_HitLeft == frameCount) {
 			return lastCheckedValue_HitLeft;
 		}
-		
+
 		lastCheckedFrameCount_HitLeft = frameCount;
-		
+
 		for (Block b : blocklist) {
 			float playerHighY = p.getY();
 			float playerDeepY = p.getY() + p.getTexture().getTextureHeight() - 1.6f;

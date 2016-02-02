@@ -10,14 +10,17 @@ import org.newdawn.slick.opengl.Texture;
 public class Player {
 
 	private final Texture texture;
-	private static final float GRAVITY = 0.04F, JUMP_POWER = 0.47f;
+	private static final float GRAVITY = Float.parseFloat(System.getProperty("os.grav", String.valueOf(0.04f))),
+			JUMP_POWER = Float.parseFloat(System.getProperty("os.jppwr", String.valueOf(0.47f))),
+			MOVEMENT_SPEED = Float.parseFloat(System.getProperty("os.movspd", String.valueOf(0.25f)));
 	private float x, y, dx, dy;
+	public boolean keyInputs = true;
 
 	public Player(final Texture texture) throws IOException {
 		this.texture = texture;
 		this.respawn();
 	}
-	
+
 	public void respawn() throws IOException {
 		this.setX(Manager.DISPLAY_HEIGHT / 2);
 		this.setY(0);
@@ -53,10 +56,13 @@ public class Player {
 	}
 
 	public void update() throws IOException {
-		
+
 		float blockdx = 0;
-		
+
 		if (this.y > Manager.DISPLAY_HEIGHT) {
+			Overlay.score = 0;
+			Overlay.round = 0;
+			Overlay.newRound();
 			this.respawn();
 		}
 		if (!Manager.hitsGround(this)) {
@@ -64,18 +70,18 @@ public class Player {
 		} else {
 			this.dy = 0;
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+		if (Keyboard.isKeyDown(Keyboard.KEY_UP) && this.keyInputs) {
 			this.jump();
 		}
-		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT) && !Manager.touchesBlockRight(this)) {
-			blockdx = -0.2f;
-		} else if (Keyboard.isKeyDown(Keyboard.KEY_LEFT) && !Manager.touchesBlockLeft(this)) {
-			blockdx = 0.2f;
+		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT) && !Manager.touchesBlockRight(this) && keyInputs) {
+			blockdx = -MOVEMENT_SPEED;
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_LEFT) && !Manager.touchesBlockLeft(this) && keyInputs) {
+			blockdx = MOVEMENT_SPEED;
 		} else {
 			if (Manager.hitsGround(this))
 				this.dx = 0;
 		}
-		
+
 		Manager.moveAllX(blockdx * Logics.delta());
 
 		this.x += this.dx * Logics.delta();
