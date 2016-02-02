@@ -1,11 +1,6 @@
 # OldSchool
 
 ---
-##### PreRelease v0.1-Alpha (01.02.2016)
-
-**CHANGELOG:**
-
-1. Created the game. Just for you.
 
 **Requirements:**
 * [Java&trade; by the Oracle&reg; Corporation](http://www.java.com/de/download/)
@@ -21,3 +16,9 @@
 - [ ] _Mac OSX_
 
 ---
+### Version List
+##### PreRelease v0.1-Alpha (01.02.2016)
+
+**CHANGELOG:**
+
+1. Created the game. Just for you.
