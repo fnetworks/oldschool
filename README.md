@@ -17,7 +17,7 @@
 
 ---
 ### Version List
-##### PreRelease v0.1-Alpha (01.02.2016)
+[**PreRelease v0.1-Alpha \(01.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.1-alpha)
 
 **CHANGELOG:**
 
