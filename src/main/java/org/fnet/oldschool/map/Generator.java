@@ -5,17 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
-import org.fnet.oldschool.Manager;
+import org.fnet.oldschool.PublicVars;
 import org.fnet.oldschool.entities.Block;
 
 public class Generator {
-
-	public static final String[] SEGMENTBUNDLE_UPDOWNSTAIRS = { "3", "stairsup", "stairsdown" };
-	public static final String[] SEGMENTBUNDLE_START        = { "X", "high", "flat" };
-	public static final String[] SEGMENTBUNDLE_END          = { "X", "flat", "high" };
-	public static final String[] SEGMENTBUNDLE_NORMAL       = { "10", "flatdoubleblock", "flat", "flatblock" };
-
-	private static final int MAP_LENGTH = 10;
 	
 	private static void addAll(ArrayList<String> segments, String... bundle) {
 		segments.addAll(Arrays.asList(Arrays.copyOfRange(bundle, 1, bundle.length)));
@@ -25,20 +18,20 @@ public class Generator {
 		ArrayList<String> segments = new ArrayList<>();
 		Random random = new Random();
 		
-		addAll(segments, SEGMENTBUNDLE_START);
-		int stairs = getBundlePriority(SEGMENTBUNDLE_UPDOWNSTAIRS);
-		int normal = getBundlePriority(SEGMENTBUNDLE_NORMAL);
+		addAll(segments, PublicVars.SEGMENTBUNDLE_START);
+		int stairs = getBundlePriority(PublicVars.SEGMENTBUNDLE_UPDOWNSTAIRS);
+		int normal = getBundlePriority(PublicVars.SEGMENTBUNDLE_NORMAL);
 		
-		for (int i = 0; i < MAP_LENGTH; i++) {
+		for (int i = 0; i < PublicVars.MAP_LENGTH; i++) {
 			
 			if (randBoolFromPriority(random, stairs))
-				addAll(segments, SEGMENTBUNDLE_UPDOWNSTAIRS);
+				addAll(segments, PublicVars.SEGMENTBUNDLE_UPDOWNSTAIRS);
 			else if (randBoolFromPriority(random, normal))
-				addAll(segments, SEGMENTBUNDLE_NORMAL);
+				addAll(segments, PublicVars.SEGMENTBUNDLE_NORMAL);
 			else
 				segments.add("flat");
 		}
-		addAll(segments, SEGMENTBUNDLE_END);
+		addAll(segments, PublicVars.SEGMENTBUNDLE_END);
 		
 		return segments;
 	}
@@ -60,7 +53,7 @@ public class Generator {
 		int x_pointer = 0;
 		for (String s : segments) {
 			Segment segment = new Segment(s);
-			x_pointer += segment.addToList(list, x_pointer, Manager.DISPLAY_HEIGHT - 64) + 64;
+			x_pointer += segment.addToList(list, x_pointer, PublicVars.DISPLAY_HEIGHT - 64) + 64;
 		}
 	}
 	

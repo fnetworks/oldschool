@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.fnet.oldschool.Logics;
 import org.fnet.oldschool.Manager;
+import org.fnet.oldschool.PublicVars;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.opengl.Texture;
 
@@ -22,7 +23,7 @@ public class Player {
 	}
 
 	public void respawn() throws IOException {
-		this.setX(Manager.DISPLAY_HEIGHT / 2);
+		this.setX(PublicVars.DISPLAY_HEIGHT / 2);
 		this.setY(0);
 		this.setDx(0);
 		this.setDy(0);
@@ -59,7 +60,7 @@ public class Player {
 
 		float blockdx = 0;
 
-		if (this.y > Manager.DISPLAY_HEIGHT) {
+		if (this.y > PublicVars.DISPLAY_HEIGHT) {
 			Overlay.score = 0;
 			Overlay.round = 0;
 			Overlay.newRound();

@@ -7,6 +7,7 @@ import java.io.IOException;
 import org.fnet.oldschool.Logics;
 import org.fnet.oldschool.Main;
 import org.fnet.oldschool.Manager;
+import org.fnet.oldschool.PublicVars;
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.Texture;
@@ -53,20 +54,20 @@ public class Overlay {
 		Texture exit = Manager.getPng("exit");
 		Texture sound_mute = Manager.getPng("sound_mute");
 		Texture sound_unmute = Manager.getPng("sound_unmute");
-		Manager.draw(overlay, 0, 0, Manager.DISPLAY_WIDTH, Manager.DISPLAY_HEIGHT);
-		Manager.draw(close, Manager.DISPLAY_WIDTH - 35, 5, 30, 30);
-		Manager.draw(exit, Manager.DISPLAY_WIDTH - 70, 5, 30, 30);
+		Manager.draw(overlay, 0, 0, PublicVars.DISPLAY_WIDTH, PublicVars.DISPLAY_HEIGHT);
+		Manager.draw(close, PublicVars.DISPLAY_WIDTH - 35, 5, 30, 30);
+		Manager.draw(exit, PublicVars.DISPLAY_WIDTH - 70, 5, 30, 30);
 		if (!soundEnabled) {
-			Manager.draw(sound_mute, Manager.DISPLAY_WIDTH - 105, 5, 30, 30);
+			Manager.draw(sound_mute, PublicVars.DISPLAY_WIDTH - 105, 5, 30, 30);
 		} else {
-			Manager.draw(sound_unmute, Manager.DISPLAY_WIDTH - 105, 5, 30, 30);
+			Manager.draw(sound_unmute, PublicVars.DISPLAY_WIDTH - 105, 5, 30, 30);
 		}
 		if (Mouse.isButtonDown(0)) {
-			if (Manager.mouseIsInRangeOf(Manager.DISPLAY_WIDTH - 35, 5, 30, 30)) {
+			if (Manager.mouseIsInRangeOf(PublicVars.DISPLAY_WIDTH - 35, 5, 30, 30)) {
 				Main.closeOverlay();
-			} else if (Manager.mouseIsInRangeOf(Manager.DISPLAY_WIDTH - 70, 5, 30, 30)) {
+			} else if (Manager.mouseIsInRangeOf(PublicVars.DISPLAY_WIDTH - 70, 5, 30, 30)) {
 				Main.close();
-			} else if (Manager.mouseIsInRangeOf(Manager.DISPLAY_WIDTH - 105, 5, 30, 30)) {
+			} else if (Manager.mouseIsInRangeOf(PublicVars.DISPLAY_WIDTH - 105, 5, 30, 30)) {
 				if (!mouseClicked) {
 					mouseClicked = true;
 					if (soundEnabled) {

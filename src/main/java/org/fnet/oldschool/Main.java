@@ -1,12 +1,7 @@
 package org.fnet.oldschool;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import org.apache.commons.io.IOUtils;
 import org.fnet.oldschool.entities.Block;
 import org.fnet.oldschool.entities.Overlay;
 import org.fnet.oldschool.entities.Player;
@@ -20,12 +15,6 @@ import org.lwjgl.opengl.GL11;
 public class Main {
 
 	private static boolean overlayShown = false, shouldRun = true;
-	private static final String[] natives = { "/res/natives/jinput-dx8_64.dll", "/res/natives/jinput-dx8.dll",
-			"/res/natives/jinput-raw_64.dll", "/res/natives/jinput-raw.dll", "/res/natives/libjinput-linux.so",
-			"/res/natives/libjinput-linux64.so", "/res/natives/libjinput-osx.dylib", "/res/natives/liblwjgl.dylib",
-			"/res/natives/liblwjgl.so", "/res/natives/liblwjgl64.so", "/res/natives/libopenal.so",
-			"/res/natives/libopenal64.so", "/res/natives/lwjgl.dll", "/res/natives/lwjgl64.dll",
-			"/res/natives/openal.dylib", "/res/natives/OpenAL32.dll", "/res/natives/OpenAL64.dll" };
 
 	public static void closeOverlay() {
 		overlayShown = false;
@@ -35,25 +24,12 @@ public class Main {
 		shouldRun = false;
 	}
 
-	public static void extractNatives() throws FileNotFoundException, IOException, InterruptedException {
-		File base = new File(System.getProperty("user.dir"), "natives");
-		base.mkdirs();
-		for (String s : natives) {
-			File f = new File(base, s.split("/")[s.split("/").length - 1]);
-			if (!f.exists()) {
-				IOUtils.copy(Main.class.getResourceAsStream(s), new FileOutputStream(f));
-			}
-		}
-		System.setProperty("org.lwjgl.librarypath", base.getAbsolutePath());
-		Thread.sleep(100);
-	}
 
 	public static void main(String[] args) {
 		try {
 			Thread t = new Thread(() -> {
 				sub();
-			});
-			t.setName("Game Thread");
+			}, "Game Thread");
 			t.start();
 		} catch (Exception e) {
 			System.err.println("Please Help!");
@@ -65,7 +41,7 @@ public class Main {
 	private static void sub() {
 		LogSystem.init();
 		try {
-			extractNatives();
+			PreGame.extractNatives();
 			Manager.init();
 			{
 				// Textures Loading
@@ -87,6 +63,7 @@ public class Main {
 				Overlay.init();
 				LogSystem.getLogger(Manager.class).info("Font loading OK.");
 			}
+			PreGame.getUpdate();
 			Manager.setColorToDefault();
 			Player p = new Player(Manager.getPng("sprite"));
 			ArrayList<Block> blocks = new ArrayList<>();

@@ -60,11 +60,10 @@ public class Manager {
 	private static final HashMap<String, Audio> sounds = new HashMap<>();
 	private static final ArrayList<Block> blocklist = new ArrayList<>();
 
-	public static final int DISPLAY_WIDTH = 740, DISPLAY_HEIGHT = 480;
 
 	public static boolean mouseIsInRangeOf(final float x, final float y, final float width, final float height) {
 		return (x < Mouse.getX() && Mouse.getX() < x + width)
-				&& (y < DISPLAY_HEIGHT - Mouse.getY() && DISPLAY_HEIGHT - Mouse.getY() < y + height);
+				&& (y < PublicVars.DISPLAY_HEIGHT - Mouse.getY() && PublicVars.DISPLAY_HEIGHT - Mouse.getY() < y + height);
 	}
 
 	public static void setColor(float r, float g, float b) {
@@ -76,13 +75,13 @@ public class Manager {
 	}
 
 	public static void init() throws LWJGLException {
-		Display.setDisplayMode(new DisplayMode(DISPLAY_WIDTH, DISPLAY_HEIGHT));
+		Display.setDisplayMode(new DisplayMode(PublicVars.DISPLAY_WIDTH, PublicVars.DISPLAY_HEIGHT));
 		Display.create();
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glShadeModel(GL_SMOOTH);
-		glOrtho(0, DISPLAY_WIDTH, DISPLAY_HEIGHT, 0, 1, -1);
-		glViewport(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+		glOrtho(0, PublicVars.DISPLAY_WIDTH, PublicVars.DISPLAY_HEIGHT, 0, 1, -1);
+		glViewport(0, 0, PublicVars.DISPLAY_WIDTH, PublicVars.DISPLAY_HEIGHT);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
