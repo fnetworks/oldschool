@@ -30,3 +30,9 @@
 1. Made some little changes.
 2. A (High)Score and time system.
 3. Some other things.
+
+Release v0.3-Alpha \(Not out yet\)
+
+**CHANGELOG:**
+
+1. Auto updater!
