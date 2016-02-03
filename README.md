@@ -3,7 +3,7 @@
 ---
 
 **Requirements:**
-* [Java&trade; by the Oracle&reg; Corporation](http://www.java.com/de/download/)
+* [Java&trade; by the Oracle&reg; Corporation](http://www.java.com/de/download/) (Min: 8)
 * OpenGL 1.1
 * Some _RAM_ (Recommended: _1GB+_)
 
