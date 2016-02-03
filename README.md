@@ -3,7 +3,7 @@
 ---
 
 **Requirements:**
-* [Java&trade; by the Oracle&reg; Corporation](http://www.java.com/de/download/) (Min: 8)
+* [Java&trade; by the Oracle&reg; Corporation](http://www.java.com/de/download/) (Minimum since Release v0.2-Alpha: Java 8)
 * OpenGL 1.1
 * Some _RAM_ (Recommended: _1GB+_)
 
@@ -17,8 +17,15 @@
 
 ---
 ### Version List
-[**PreRelease v0.1-Alpha \(01.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.1-alpha)
+[**Release v0.1-Alpha \(01.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.1-alpha)
 
 **CHANGELOG:**
 
 1. Created the game. Just for you.
+
+[**Release v0.2-Alpha \(02.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.2-alpha)
+
+**CHANGELOG:**
+
+1. Made some little changes.
+2. A (High)Score and time system.
