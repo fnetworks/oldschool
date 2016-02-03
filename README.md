@@ -29,3 +29,4 @@
 
 1. Made some little changes.
 2. A (High)Score and time system.
+3. Some other things.
