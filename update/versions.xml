@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <versions>
-	<version latest="true">v0.3-beta</version>
+	<version latest="true">v0.4-beta</version>
+	<version>v0.3-beta</version>
 	<version>v0.2-alpha</version>
 	<version>v0.1-alpha</version>
 </versions>
