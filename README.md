@@ -31,7 +31,7 @@
 2. A (High)Score and time system.
 3. Some other things.
 
-[**Release v0.3-Beta \(02.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.3-beta)
+[**Release v0.3-Beta \(03.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.3-beta)
 
 **CHANGELOG:**
 
