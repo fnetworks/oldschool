@@ -12,7 +12,7 @@
 - [x] Win7
 - [ ] Win8
 - [x] Win10
-- [ ] Linux (Ubuntu)
+- [x] Linux (Ubuntu)
 - [ ] _Mac OSX_
 
 ---
