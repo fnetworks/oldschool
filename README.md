@@ -31,8 +31,9 @@
 2. A (High)Score and time system.
 3. Some other things.
 
-Release v0.3-Alpha \(Not out yet\)
+[**Release v0.3-Beta \(02.02.2016\)**](https://github.com/wweh/oldschool/releases/tag/v0.3-beta)
 
 **CHANGELOG:**
 
-1. Auto updater!
+1. Launcher.
+2. Auto updater!
